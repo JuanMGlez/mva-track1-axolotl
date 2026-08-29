@@ -4,8 +4,8 @@
 *.vcf.gz.tbi
 *.bam
 *.cram
-data/
-results/
+/data/
+/results/
 .cache/
 
 __pycache__/
