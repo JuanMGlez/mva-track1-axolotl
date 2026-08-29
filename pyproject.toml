@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mva-track1-axolotl"
+version = "1.0.0"
+description = "Team Axolotl, MVA Hackathon 2026 Track 1: HPO-anchored targeted panel with ACMG/AMP evidence weighting"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+dependencies = [
+    "pandas>=2.0",
+    "numpy>=1.24",
+    "requests>=2.31",
+    "PyYAML>=6.0",
+    "matplotlib>=3.7",
+    "openpyxl>=3.1",
+]
+
+[project.optional-dependencies]
+fast = ["pysam>=0.22"]
+dev = ["pytest>=7.4"]
+
+[project.scripts]
+mva-track1 = "mva_track1.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

@@ -1,0 +1,99 @@
+# Team Axolotl - MVA Hackathon 2026, Track 1
+#
+# Everything the pipeline needs to reproduce the submission: the phenotype terms
+# that motivated the gene sets, the two panels, the QC and rarity thresholds, and
+# the expert-reviewed EPCR values that were actually submitted.
+#
+# The HPO -> gene-set step was expert reasoning, not an algorithm. That reasoning
+# is recorded here as data so the rest of the pipeline is deterministic.
+assembly: GRCh38
+proband_id: WGS_EX2312012
+padding_bp: 5000
+rarity_af_max: 0.01
+splice_window_bp: 8
+qc:
+  min_dp: 10
+  min_gq: 30
+hpo_terms:
+  HP:0002859: Rhabdomyosarcoma
+  HP:0000121: Nephrocalcinosis (present from birth)
+  HP:0004322: Short stature
+  HP:0001508: Failure to thrive
+  HP:0003202: Skeletal muscle atrophy
+  HP:0001622: Premature birth
+  HP:0001518: Small for gestational age
+  HP:0200067: Recurrent spontaneous abortion (parental)
+panels:
+  MVA:
+    label: Mosaic variegated aneuploidy (chromosomal instability) - primary hypothesis
+    genes:
+    - BUB1B
+    - CEP57
+    - TRIP13
+    inheritance:
+      BUB1B: AR
+      CEP57: AR
+      TRIP13: AR
+    annotate_all: true
+  NEPHRO:
+    label: Congenital nephrocalcinosis - independent secondary panel
+    genes:
+    - ATP6V0A4
+    - ATP6V1B1
+    - SLC4A1
+    - CYP24A1
+    - CLDN16
+    - CLDN19
+    - SLC34A1
+    inheritance:
+      ATP6V0A4: AR
+      ATP6V1B1: AR
+      SLC4A1: AD/AR
+      CYP24A1: AR
+      CLDN16: AR
+      CLDN19: AR
+      SLC34A1: AR
+    annotate_all: false
+submitted_epcr:
+- chrom_1: chr15
+  pos_1: 40209701
+  ref_1: T
+  alt_1: G
+  chrom_2: chr15
+  pos_2: 40220612
+  ref_2: T
+  alt_2: G
+  epcr: '0.85'
+  finding_type: primary
+  notes: 'BUB1B compound heterozygous candidate (MVA1, OMIM 257300, autosomal recessive). Allele 1 c.2210T>G
+    p.Leu737* (rs759242053; ClinVar VCV000533901 Pathogenic/Likely pathogenic, 2 stars; gnomAD v4 AF 7.4e-05,
+    0 hom). Allele 2 c.3006T>G p.Asn1002Lys (AF 6.8e-07, 1/1461878, 0 hom; SIFT deleterious, PolyPhen-2
+    probably_damaging, phyloP100way 4.80; absent from ClinVar). Transcript NM_001211.6 / ENST00000287598.11.
+    Null + hypomorphic allele combination matches the established MVA1 mechanism (complete BubR1 loss
+    is embryonic lethal). Phase NOT established: no PGT/PID in VCF and alleles are 10911 bp apart; trans
+    configuration requires parental Sanger segregation.'
+- chrom_1: chr15
+  pos_1: 40209701
+  ref_1: T
+  alt_1: G
+  chrom_2: chr15
+  pos_2: 40216470
+  ref_2: A
+  alt_2: G
+  epcr: '0.10'
+  finding_type: primary
+  notes: Lower-ranked ALTERNATIVE pairing for the same BUB1B recessive hypothesis, submitted only in case
+    p.Leu737* and p.Asn1002Lys prove to be in cis. Second allele chr15:40216470 A>G is heterozygous, absent
+    from gnomAD v4 (hence notable for rarity) but deep intronic and on a non-conserved base (phyloP100way
+    -0.41), with no predicted splice effect. Retained as a low-priority VUS, not a preferred candidate.
+- chrom_1: chr5
+  pos_1: 177386432
+  ref_1: C
+  alt_1: T
+  epcr: '0.15'
+  finding_type: secondary
+  notes: 'SLC34A1 c.398C>T p.Ala133Val (rs148976897), heterozygous, monoallelic only. Reported as a possible
+    modifier of the nephrocalcinosis (HP:0000121), not a cause: infantile hypercalcaemia type 2 is autosomal
+    recessive and no second allele was found. gnomAD v4 AF 0.40% with 23 homozygotes; ClinVar VCV000352960
+    conflicting classifications (1 star); SIFT deleterious, PolyPhen-2 probably_damaging, phyloP100way
+    6.10. No biallelic genotype in any of the 7 nephrocalcinosis genes screened.'

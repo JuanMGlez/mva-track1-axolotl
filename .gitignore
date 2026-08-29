@@ -1,0 +1,23 @@
+# never commit patient data
+*.vcf
+*.vcf.gz
+*.vcf.gz.tbi
+*.bam
+*.cram
+data/
+results/
+.cache/
+
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+*.egg-info/
+build/
+dist/
+.DS_Store
+.ipynb_checkpoints/
+
+# the committed copy of the submitted figure lives in docs/, not results/
+!docs/*.png
