@@ -7,7 +7,7 @@
 # The HPO -> gene-set step was expert reasoning, not an algorithm. That reasoning
 # is recorded here as data so the rest of the pipeline is deterministic.
 assembly: GRCh38
-proband_id: WGS_EX2312012
+proband_id: PROBAND01          # identifier required by the challenge scorer; VCF sample column is WGS_EX2312012
 padding_bp: 5000
 rarity_af_max: 0.01
 splice_window_bp: 8
